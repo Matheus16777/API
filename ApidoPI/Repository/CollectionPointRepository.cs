@@ -12,8 +12,8 @@ namespace ApidoPI.Repository
         public async Task Add(CollectionPointDTO user)
         {
             string sql = @"
-            INSERT INTO collection_point (Name, Address, Number, Residue)
-                         VALUE(@Name, @Address, @Number, @Residue)
+            INSERT INTO collection_point (Name, Address, Number, Residue, bairro_Id)
+                         VALUE(@Name, @Address, @Number, @Residue, @bairro_Id)
           ";
            await Execute(sql, user);
         
@@ -41,10 +41,11 @@ namespace ApidoPI.Repository
         {
             string sql = @"
                      UPDATE collection_point
-                     SET Name = @Name
-                         Address = @Address
-                         Number = @Number
-                         Residue = @Residue
+                     SET Name = @Name,
+                         Address = @Address,
+                         Number = @Number,
+                         Residue = @Residue,
+                         bairro_Id = @bairro_Id
                      WHERE Id = @Id
             ";
             await Execute(sql, collectionpoint);
